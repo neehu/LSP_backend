@@ -1,0 +1,27 @@
+version: '3.4'
+services:
+  database:
+    image: lspdb
+    networks: 
+    - mynetwork
+    ports:
+    - "1433:1433"
+    environment:
+     SA_PASSWORD: "batman123!"
+     ACCEPT_EULA: "Y"
+    build:
+     context: C:\Users\Neeharika.Pathuri\source\docker-demo
+     dockerfile: DockerFile.txt
+  service:
+    image: ${DOCKER_REGISTRY}service
+    depends_on: 
+    - database
+    ports:
+    - "5200:5200"
+    build: 
+     context: .\Service
+     dockerfile: Dockerfile
+    networks: 
+     - mynetwork
+networks:
+  mynetwork:

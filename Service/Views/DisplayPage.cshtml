@@ -1,0 +1,31 @@
+﻿<% @Page Language="C#" 
+Inherits="System.Web.Mvc.ViewPage<IEnumerable<LetsShop.Models.ProductsController>>"%>
+
+@using LetsShop.Models
+@{
+    var products = ViewData["products"] as List<ProductDetails>;
+}
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <title>List Of Products</title>
+</head>
+<body bgcolor="red" align="center">
+    <table>
+        <tr>
+            <th>ProductName</th>
+            <th>ProductDescription</th>
+            <th>Price</th>
+        </tr>
+        @foreach (var product in products)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => product.ProductName)</td>
+                <td>@Html.DisplayFor(modelItem => product.ProductDescription)</td>
+                <td>@Html.DisplayFor(modelItem => product.ProductPrice)</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
